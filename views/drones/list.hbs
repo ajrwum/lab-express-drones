@@ -6,6 +6,8 @@
     <h3>{{this.name}}</h3>
     <p>{{this.propellers}} propeller(s)</p>
     <p>Max speed: {{this.maxSpeed}} knots</p>
+    <a href="/drones/{{this._id}}/edit">Update</a>
+    <a href="/drones/{{this._id}}/delete">Delete</a>
   </div>
   {{/each}}
 </div>
