@@ -102,7 +102,7 @@ router.get('/drones/:id/delete', (req, res, next) => {
   if (mongoose.isValidObjectId(req.params.id)) {
     // updating the drone in the db
     droneModel.findByIdAndDelete(req.params.id)
-    .then(updated => {
+    .then(() => {
       // redirecting to the list of
       res.redirect('/drones');
     })
