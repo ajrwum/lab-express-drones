@@ -11,6 +11,7 @@ router.get('/drones', (req, res, next) => {
   // Iteration #2: List the drones
   // ... your code here
 
+  console.log('--- --- /drones - GET');
   // finding all drones in db to display them
   droneModel.find()
   .then(allDrones => {
@@ -26,6 +27,7 @@ router.get('/drones/create', (req, res, next) => {
   // Iteration #3: Add a new drone
   // ... your code here
 
+  console.log('--- --- /drones/create - GET');
   // loading the create form
   res.render('drones/create-form');
 });
@@ -34,6 +36,7 @@ router.post('/drones/create', (req, res, next) => {
   // Iteration #3: Add a new drone
   // ... your code here
 
+  console.log('--- --- /drones/create - POST');
   // loading the user's input
   const userInput = req.body;
 
@@ -53,6 +56,7 @@ router.get('/drones/:id/edit', (req, res, next) => {
   // Iteration #4: Update the drone
   // ... your code here
 
+  console.log('--- --- /drones/:id/edit - GET');
   // loading the drone to display it for update
   droneModel.findById(req.params.id)
   .then(drone => {
@@ -69,6 +73,7 @@ router.post('/drones/:id/edit', (req, res, next) => {
   // Iteration #4: Update the drone
   // ... your code here
 
+  console.log('--- --- /drones/:id/edit - POST');
   // checking the id
   if (mongoose.isValidObjectId(req.params.id)) {
     // updating the drone in the db
@@ -93,34 +98,38 @@ router.post('/drones/:id/edit', (req, res, next) => {
     }
   }
 });
-  
-router.get('/drones/:id/delete', (req, res, next) => {
+
+// --- HELPER FUNCTION to delete a drone
+const deleteDrone = async (req, res, next) => {
   // Iteration #5: Delete the drone
   // ... your code here
 
-  // checking the id
-  if (mongoose.isValidObjectId(req.params.id)) {
-    // updating the drone in the db
-    droneModel.findByIdAndDelete(req.params.id)
-    .then(() => {
+  // retrieving the drone id in req.params
+  const id = req.params.id;
+  // console.log(`--- helper function: deleteDrone - ${req.method} - ${id}`);
+  try {
+    // checking the id
+    if (mongoose.isValidObjectId(id)) {
+      // updating the drone in the db
+      await droneModel.findByIdAndDelete(id)
       // redirecting to the list of
       res.redirect('/drones');
-    })
-    .catch(e => {
-      // making sure the error is properly handled
-      next(e);
-    })
-  }
-  else {
-    try {
+    }
+    else {
       // throwing an error to pass to next()
       throw new Error('Invalid id');
-    }
-    catch (e) {
-      // making sure the error is properly handled
-      next(e);
-    }
-  }  
-});
+    }  
+  }
+  catch (e) {
+    // making sure the error is properly handled
+    next(e);
+  }
+}
+
+// --- GET version - when triggered via a <a> tag
+router.get('/drones/:id/delete', deleteDrone);
+// --- POST version - when triggered via a <button> tag in a form with post method
+router.post('/drones/:id/delete', deleteDrone);
+
 
 module.exports = router;

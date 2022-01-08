@@ -6,8 +6,13 @@
     <h3>{{this.name}}</h3>
     <p>{{this.propellers}} propeller(s)</p>
     <p>Max speed: {{this.maxSpeed}} knots</p>
-    <a href="/drones/{{this._id}}/edit">Update</a>
-    <a href="/drones/{{this._id}}/delete">Delete</a>
+    <div id="actions">
+      <a href="/drones/{{this._id}}/edit" class="btn">Update</a>
+      <a href="/drones/{{this._id}}/delete" class="btn">Delete (GET)</a>
+      <form action="/drones/{{this._id}}/delete" method="POST">
+        <button class="btn">Delete (POST)</button>
+      </form>
+    </div>
   </div>
   {{/each}}
 </div>
