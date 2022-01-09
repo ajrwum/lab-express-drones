@@ -1,8 +1,83 @@
+/** GENREIC LAYOUT */
+
 body {
-  padding: 50px;
+  background-color:dimgrey;
+  color:cornsilk;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  padding: 50px;
 }
 
 a {
-  color: #00b7ff;
+  font-size: 1.8em;
+  text-decoration: none;
+}
+
+h1, h2 {
+  margin: 2em 0;
+}
+
+p {
+  font-size: 1.4em;
+}
+
+
+/** NAV BAR */
+
+.nav-link {
+  color: darkkhaki;
+}
+.nav-link:hover {
+  color:khaki;
+}
+
+
+/** BUTTONS (aka all <a> and <button tags) */
+
+/* - add, update */
+.btn {
+  /* border: none; */
+  color: cornsilk;
+  font-weight: bold;
+}
+.btn:hover {
+  color: khaki;
+}
+
+/* - cancel */
+.btn-secondary, .btn-secondary:hover {
+  background-color: dimgrey;
+  border-color: black;
+}
+
+/* - delete */
+.btn-warning {
+  color: dimgrey;
+}
+.btn-warning:hover {
+  color: orangered;
+}
+
+
+/** ALL DRONES (list) */
+
+.card {
+  background-color: cornsilk;
+  color: dimgrey;
+}
+
+.card-text {
+  color: dimgrey;
+}
+
+
+/** UPDATE / CREATE FORM */
+
+.form-label {
+  color: khaki;
+  font-size: 1.2em;
+}
+
+.form-control {
+  background-color: cornsilk;
+  color: dimgrey;
 }

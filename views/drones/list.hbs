@@ -1,17 +1,31 @@
 <h2>Available drones</h2>
 
-<div id="drones">
+<div class="row row-cols-1 row-cols-md-2 g-4">
   {{#each allDrones}}
-  <div class="card">
-    <h3>{{this.name}}</h3>
-    <p>{{this.propellers}} propeller(s)</p>
-    <p>Max speed: {{this.maxSpeed}} knots</p>
-    <div id="actions">
-      <a href="/drones/{{this._id}}/edit" class="btn">Update</a>
-      <a href="/drones/{{this._id}}/delete" class="btn">Delete (GET)</a>
-      <form action="/drones/{{this._id}}/delete" method="POST">
-        <button class="btn">Delete (POST)</button>
-      </form>
+  <div class="col">
+    <div class="card mb-3">
+      <div class="container mb-3 mt-3">
+        <h3 class="card-title">{{this.name}}</h3>
+        <p class="card-text">{{this.propellers}} propeller(s)</p>
+        <p class="card-text">Max speed: {{this.maxSpeed}} knots</p>
+      </div>
+      <div class="container">
+        <div class="row row-cols-auto mb-2">
+          <div class="col">
+            <a href="/drones/{{this._id}}/edit" class="btn btn-dark">Update</a>
+          </div>
+        </div>
+        <div class="row row-cols-auto g-1 mb-3">
+          <div class="col">
+            <a href="/drones/{{this._id}}/delete" class="btn btn-warning">Delete GET</a>
+          </div>
+          <div class="col">
+            <form action="/drones/{{this._id}}/delete" method="POST">
+              <button class="btn btn-warning">Delete POST</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   {{/each}}
